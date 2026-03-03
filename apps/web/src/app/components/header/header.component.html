@@ -1,0 +1,24 @@
+<mat-toolbar class="premium-header">
+  <div class="header-container">
+    <a routerLink="/" class="logo">
+      <mat-icon>fitness_center</mat-icon>
+      <span class="logo-text">Premium<span>Fit</span></span>
+    </a>
+    
+    <div class="nav-links">
+      <a mat-button routerLink="/">Accueil</a>
+      <a mat-button routerLink="/shop">Programmes</a>
+    </div>
+
+    <div class="auth-actions">
+      @if (authService.isAuthenticated()) {
+        <a mat-flat-button color="accent" routerLink="/dashboard" class="premium-btn">
+          <mat-icon>dashboard</mat-icon> Mon Espace
+        </a>
+      } @else {
+        <a mat-stroked-button routerLink="/auth/login" class="login-btn">Connexion</a>
+        <a mat-flat-button color="accent" routerLink="/auth/register" class="premium-btn">Rejoindre</a>
+      }
+    </div>
+  </div>
+</mat-toolbar>

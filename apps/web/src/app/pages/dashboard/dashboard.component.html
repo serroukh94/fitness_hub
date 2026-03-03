@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<main class="dashboard-container">
+  <aside class="sidebar">
+    <div class="user-profile">
+      <div class="avatar">{{ user()?.firstName?.charAt(0) }}{{ user()?.lastName?.charAt(0) }}</div>
+      <h2>{{ user()?.firstName }} {{ user()?.lastName }}</h2>
+      <span class="role">{{ user()?.role }}</span>
+    </div>
+    
+    <nav class="nav-menu">
+      <button mat-button class="nav-item active"><mat-icon>dashboard</mat-icon> Mon Espace</button>
+      <button mat-button class="nav-item" routerLink="/shop"><mat-icon>shopping_bag</mat-icon> Programmes</button>
+      <button mat-button class="nav-item" (click)="logout()"><mat-icon>logout</mat-icon> Déconnexion</button>
+    </nav>
+  </aside>
+
+  <div class="dashboard-content">
+    <header class="content-header">
+      <h1>Bienvenue, {{ user()?.firstName }}</h1>
+      <p>Prêt pour ta prochaine séance ?</p>
+    </header>
+
+    <div class="grid-layout">
+      <!-- Section Bilan / Check-In -->
+      <section class="card checkin-section">
+        <h3><mat-icon>update</mat-icon> Nouveau Bilan (Check-in)</h3>
+        <p class="subtitle">Mets à jour tes mensurations pour un suivi optimal.</p>
+        
+        <form [formGroup]="checkInForm" (ngSubmit)="submitCheckIn()" class="checkin-form">
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Poids Actuel (kg)</mat-label>
+            <input matInput type="number" formControlName="weight" placeholder="Ex: 75.5">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" color="accent">
+            <mat-label>Notes (Sensations, fatigue...)</mat-label>
+            <textarea matInput formControlName="notes" rows="3" placeholder="Comment s'est passée la semaine ?"></textarea>
+          </mat-form-field>
+
+          <button mat-flat-button color="accent" type="submit" [disabled]="checkInForm.invalid || isSubmitting()">
+            {{ isSubmitting() ? 'Envoi...' : 'Enregistrer le bilan' }}
+          </button>
+        </form>
+      </section>
+
+      <!-- Section Historique -->
+      <section class="card history-section">
+        <h3><mat-icon>history</mat-icon> Historique des Bilans</h3>
+        
+        @if (checkIns().length === 0) {
+          <div class="empty-state">
+            Aucun bilan enregistré. Fais ton premier check-in !
+          </div>
+        } @else {
+          <div class="history-list">
+            @for (checkin of checkIns(); track checkin._id) {
+              <div class="history-item">
+                <div class="date">{{ checkin.createdAt | date:'longDate' }}</div>
+                <div class="weight">{{ checkin.weight }} kg</div>
+                @if (checkin.notes) {
+                  <div class="notes">"{{ checkin.notes }}"</div>
+                }
+              </div>
+            }
+          </div>
+        }
+      </section>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<main class="shop-container">
+  <div class="shop-header">
+    <h1>Boutique Premium</h1>
+    <p>Sélectionnez le programme qui transformera votre physique.</p>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-state">
+      <mat-spinner diameter="40" color="accent"></mat-spinner>
+    </div>
+  } @else {
+    <div class="products-grid">
+      @for (product of products(); track product._id) {
+        <div class="premium-card">
+          <div class="card-image">
+            @if (product.isActive) {
+              <div class="badge-type">Disponible</div>
+            }
+          </div>
+          <div class="card-content">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <div class="price">€{{ product.price }}</div>
+            <button 
+              mat-flat-button 
+              color="accent" 
+              class="premium-btn" 
+              (click)="buyProduct(product)"
+              [disabled]="purchasingId() === product._id">
+              @if (purchasingId() === product._id) {
+                Traitement...
+              } @else {
+                Acheter
+              }
+            </button>
+          </div>
+        </div>
+      }
+      
+      @if (products().length === 0) {
+        <div class="empty-state">
+          Aucun programme disponible pour le moment.
+        </div>
+      }
+    </div>
+  }
+</main>
+
+<app-footer></app-footer>

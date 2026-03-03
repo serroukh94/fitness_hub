@@ -1,0 +1,66 @@
+.premium-header {
+  background-color: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 80px;
+
+  .header-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-main);
+    gap: 8px;
+
+    mat-icon {
+      color: var(--color-primary);
+      transform: rotate(-15deg);
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      
+      span {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 16px;
+
+    a {
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: var(--text-main);
+      }
+    }
+  }
+
+  .auth-actions {
+    display: flex;
+    gap: 16px;
+    
+    .login-btn {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+  }
+}

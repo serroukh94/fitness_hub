@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<main class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Rejoignez l'Élite</h2>
+      <p>Créez votre compte pour commencer votre transformation</p>
+    </div>
+
+    @if (errorMessage()) {
+      <div class="error-banner">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-row">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="firstName" placeholder="John">
+          @if (registerForm.get('firstName')?.hasError('required')) {
+            <mat-error>Prénom requis</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="lastName" placeholder="Doe">
+          @if (registerForm.get('lastName')?.hasError('required')) {
+            <mat-error>Nom requis</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="votre@email.com">
+        @if (registerForm.get('email')?.hasError('email')) {
+          <mat-error>Email invalide</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput type="password" formControlName="password" placeholder="Min. 8 caractères">
+          @if (registerForm.get('password')?.hasError('minlength')) {
+            <mat-error>8 caractères minimum</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" color="accent">
+          <mat-label>Confirmer le mot de passe</mat-label>
+          <input matInput type="password" formControlName="confirmPassword">
+          @if (registerForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+            <mat-error>Les mots de passe ne correspondent pas</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="accent" class="premium-btn submit-btn" type="submit" [disabled]="registerForm.invalid || isLoading()">
+        {{ isLoading() ? 'Création en cours...' : 'Créer mon compte' }}
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Déjà membre ? <a routerLink="/auth/login">Se connecter</a></p>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

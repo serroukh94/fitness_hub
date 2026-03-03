@@ -1,0 +1,29 @@
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project web and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (cfab48c94b648838)
+
+[2m> [22m[2mnx run[22m api:serve:development
+
+
+[2m> [22m[2mnx run[22m web:serve:development
+
+[33mÔØ»[39m Building...
+Ô£û Building... [FAILED: require() of ES Module C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\parse5-html-rewriting-stream\dist\index.js from C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\@angular\build\src\utils\index-file\html-rewriting-stream.js not supported.
+Instead change the require of index.js in C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\@angular\build\src\utils\index-file\html-rewriting-stream.js to a dynamic import() which is available in all CommonJS modules.]
+[7m[1m[31m NX [39m[22m[27m  [31mrequire() of ES Module C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\parse5-html-rewriting-stream\dist\index.js from C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\@angular\build\src\utils\index-file\html-rewriting-stream.js not supported.[39m
+Instead change the require of index.js in C:\Users\serro\Desktop\benridas_fit\fitness-premium-hub\node_modules\@angular\build\src\utils\index-file\html-rewriting-stream.js to a dynamic import() which is available in all CommonJS modules.
+Pass --verbose to see the stacktrace.
+Task "web:serve:development" is continuous but exited with code 1
+
+[2m[32m[39m[22m
+
+[7m[1m[32m NX [39m[22m[27m  [32mSuccessfully ran target [1mserve[22m for project web and [1m2[22m tasks it depends on[39m
+
+

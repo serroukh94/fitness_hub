@@ -1,0 +1,19 @@
+
+[7m[1m[36m NX [39m[22m[27m  [36mRunning target [1mserve[22m for project web and [1m2[22m tasks it depends on:[39m
+
+[2m[36m[39m[22m
+
+[2m> [22m[2mnx run[22m api:build
+
+[2m> [22mwebpack-cli build --node-env=production
+
+webpack compiled [1m[32msuccessfully[39m[22m (cfab48c94b648838)
+
+[2m> [22m[2mnx run[22m api:serve:development
+
+
+[2m> [22m[2mnx run[22m web:serve:development
+
+[2m> [22m[2mnx run[22m api:build:development
+[2m> [22mwebpack-cli build --node-env=development
+[33mÔØ»[39m Building...

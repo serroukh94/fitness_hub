@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<main class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h2>Bon retour parmi nous</h2>
+      <p>Connectez-vous pour accéder à vos programmes</p>
+    </div>
+
+    @if (errorMessage()) {
+      <div class="error-banner">
+        {{ errorMessage() }}
+      </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="votre@email.com">
+        @if (loginForm.get('email')?.hasError('email')) {
+          <mat-error>Email invalide</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" color="accent">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+
+      <button mat-flat-button color="accent" class="premium-btn submit-btn" type="submit" [disabled]="loginForm.invalid || isLoading()">
+        {{ isLoading() ? 'Connexion en cours...' : 'Se connecter' }}
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Pas encore membre ? <a routerLink="/auth/register">Créer un compte</a></p>
+    </div>
+  </div>
+</main>
+
+<app-footer></app-footer>

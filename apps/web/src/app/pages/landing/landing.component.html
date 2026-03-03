@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<main class="page-wrapper">
+  
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1 class="premium-title">
+        La Transformation <span>Absolue</span> <br /> commence ici.
+      </h1>
+      <p class="hero-subtitle">
+        Des programmes d'entraînement d'élite, conçus par des champions pour révéler votre véritable potentiel physique.
+      </p>
+      
+      <div class="hero-actions">
+        <button class="premium-btn" routerLink="/shop">
+          Démarrer maintenant
+        </button>
+        <button mat-stroked-button color="accent" class="outline-btn">
+          <mat-icon>play_circle_outline</mat-icon> Voir la vidéo
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="section-header">
+      <h2>Nos Programmes d'<span>Élite</span></h2>
+      <p>Choisissez l'abonnement ou le programme qui correspond à vos objectifs massifs.</p>
+    </div>
+
+    <!-- Angular v.17+ Control Flow -->
+    <div class="cards-grid">
+      @for (product of products(); track product.id) {
+        <mat-card class="product-card" [class.featured]="product.isFeatured">
+          
+          @if (product.isFeatured) {
+            <div class="badge-featured">Populaire</div>
+          }
+          
+          <img mat-card-image [src]="product.coverUrl" alt="Cover de {{product.title}}">
+          
+          <mat-card-header>
+            <div mat-card-avatar class="header-icon">
+              <mat-icon>{{ product.productType === 'SUBSCRIPTION' ? 'stars' : 'fitness_center' }}</mat-icon>
+            </div>
+            <mat-card-title>{{ product.title }}</mat-card-title>
+            <mat-card-subtitle>{{ product.productType }}</mat-card-subtitle>
+          </mat-card-header>
+          
+          <mat-card-content>
+            <p>{{ product.description }}</p>
+            <div class="price-tag">
+              <span class="currency">€</span>{{ product.price }}
+              @if (product.productType === 'SUBSCRIPTION') {
+                <span class="period">/mois</span>
+              }
+            </div>
+          </mat-card-content>
+          
+          <mat-card-actions align="end">
+            <button mat-flat-button color="accent" [disabled]="isLoading()" (click)="simulateCart(product.id)">
+              {{ isLoading() ? '...' : 'Rejoindre' }}
+            </button>
+          </mat-card-actions>
+          
+        </mat-card>
+      } @empty {
+        <div class="empty-state">
+          <mat-icon>inbox</mat-icon>
+          <p>Aucun programme disponible pour le moment.</p>
+        </div>
+      }
+    </div>
+  </section>
+
+</main>
+
+<app-footer></app-footer>
